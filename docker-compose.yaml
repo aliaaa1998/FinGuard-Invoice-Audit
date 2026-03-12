@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  invoice-auditor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: invoice-auditor
+    ports:
+      - "8000:8000"
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_MODEL: gpt-4o-mini
+    volumes:
+      - ./:/app
+    restart: unless-stopped
